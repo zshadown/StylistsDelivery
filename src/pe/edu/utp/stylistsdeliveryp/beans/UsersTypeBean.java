@@ -7,7 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-
+//UserTypeBean
 @SessionScoped
 @Named
 public class UsersTypeBean implements Serializable{
