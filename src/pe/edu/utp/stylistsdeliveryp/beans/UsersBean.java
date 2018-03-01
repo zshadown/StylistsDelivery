@@ -22,6 +22,8 @@ public class UsersBean implements Serializable{
         return sdService.findAllUsers();
     }*/
 
+    //////////////////COMENTADO
+
     public User getUser(){
         return user;
     }
