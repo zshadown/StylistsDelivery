@@ -14,6 +14,7 @@ public class SdService {
     private ServicesEntity servicesEntity;
     private UsersEntity usersEntity;
     private UsersTypeEntity usersTypeEntity;
+    private ReservationsEntity reservationsEntity;
 
     /*Connection con la BD MySQLSource1 del Glafish*/
     private Connection getConnection() {
@@ -85,6 +86,17 @@ public class SdService {
             }
         }
         return usersTypeEntity;
+    }
+
+    /*Metodo Entity Reservation*/
+    protected ReservationsEntity getReservationsEntity(){
+        if (getConnection()!=null){
+            if (reservationsEntity == null){
+                reservationsEntity = new ReservationsEntity();
+                reservationsEntity.setConnection(getConnection());
+            }
+        }
+        return reservationsEntity;
     }
 
 
@@ -187,6 +199,7 @@ public class SdService {
                 getProvincesEntity().update(province) : false;
     }
 
+
     /*Metodo update, create, delete, find de Districts*/
     public  List<District> findAllDistricts(){
         return  getDistrictsEntity() != null ?
@@ -249,5 +262,38 @@ public class SdService {
     public boolean deleteService(int id){
         return getServicesEntity()!= null?
                 getServicesEntity().delete(id) : false;
+    }
+
+
+    /*Metodo update, create, delete, find de Reservations*/
+
+    public Reservation findReservationById(int id){
+        return getReservationsEntity() != null ?
+                getReservationsEntity().findById(id) : null;
+    }
+
+    public List<Reservation> findAllReservation(){
+        return getReservationsEntity() != null ?
+                getReservationsEntity().findAll(getUsersEntity(),getServicesEntity()) : null;
+    }
+
+    public Reservation findReservationByDay(String day){
+        return getReservationsEntity() != null ?
+                getReservationsEntity().findByDay(day) : null;
+    }
+
+    public Reservation createReservation(Reservation reservation){
+        return getReservationsEntity() != null ?
+                getReservationsEntity().create(reservation) : null;
+    }
+
+    public boolean updateReservation(Reservation reservation){
+        return getReservationsEntity() != null ?
+                getReservationsEntity().update(reservation) : false;
+    }
+
+    public boolean deleteReservation(int id){
+        return getReservationsEntity() != null ?
+                getReservationsEntity().delete(id) : false;
     }
 }

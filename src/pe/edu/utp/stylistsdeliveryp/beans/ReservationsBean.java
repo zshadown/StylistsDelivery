@@ -1,5 +1,7 @@
 package pe.edu.utp.stylistsdeliveryp.beans;
 
+import pe.edu.utp.stylistsdeliveryp.models.Reservation;
+import pe.edu.utp.stylistsdeliveryp.models.SdService;
 import pe.edu.utp.stylistsdeliveryp.models.Service;
 import pe.edu.utp.stylistsdeliveryp.models.User;
 
@@ -7,62 +9,103 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Named
 @SessionScoped
 public class ReservationsBean implements Serializable{
-    private int id;
-    private Date date;
-    private String address;
-    private Service service;
-    private User userst;
-    private User userCli;
 
-    public int getId() {
-        return id;
+    private SdService sdService;
+    private Reservation reservation;
+
+    public ReservationsBean(){
+        sdService = new SdService();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public List<Reservation> getReservations(){
+        return sdService.findAllReservation();
     }
 
-    public Date getDate() {
-        return date;
+    public Reservation getReservation(){
+        return reservation;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setReservation(Reservation reservation){
+        this.reservation = reservation;
+    }
+
+    public String getDay(){
+        return this.getReservation().getDay();
+    }
+
+    public void setDay(String day){
+        this.getReservation().setDay(day);
     }
 
     public String getAddress() {
-        return address;
+        return this.getReservation().getAddress();
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.getReservation().setAddress(address);
     }
 
-    public Service getService() {
-        return service;
+    public String getTime(){
+        return this.getReservation().getTime();
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setTime(String time){
+        this.getReservation().setTime(time);
     }
 
-    public User getUserst() {
-        return userst;
+    public String getState(){
+        return this.getReservation().getState();
     }
 
-    public void setUserst(User userst) {
-        this.userst = userst;
+    public void setState(String state){
+        this.getReservation().setState(state);
     }
 
-    public User getUserCli() {
-        return userCli;
+    public Service getService(){
+        return this.getReservation().getService();
     }
 
-    public void setUserCli(User userCli) {
-        this.userCli = userCli;
+    public void setService(Service service){
+        this.getReservation().setService(service);
     }
+
+    public User getUser(){
+        return this.getReservation().getUser();
+    }
+
+    public void setUser(User user){
+        this.getReservation().setUser(user);
+    }
+
+    public String newReservation(){
+        this.setReservation(new Reservation());
+        return "success";
+    }
+
+    public String createReservation(){
+        sdService.createReservation(this.getReservation());
+        return "success";
+    }
+
+    public String editReservation(Reservation reservation){
+        this.setReservation(reservation);
+        return "success";
+    }
+
+    public String updateReservation(){
+        sdService.updateReservation(this.getReservation());
+        return "success";
+    }
+
+    public String deleteReservation(Reservation reservation){
+        sdService.deleteReservation(reservation.getId());
+        return "success";
+    }
+
+
 }
