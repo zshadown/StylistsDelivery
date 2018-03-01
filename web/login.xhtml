@@ -8,9 +8,7 @@
       xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
-
 </h:head>
-
 
 <h:body>
     <ui:composition template="defaultLayout.xhtml">
@@ -18,20 +16,28 @@
             <b:container>
                 <b:row>
                     <b:jumbotron>
-                        <h1>Login</h1>
+                        <h1>LOGIN</h1>
                         <!--p>Now with Bootstrap support!</p-->
                     </b:jumbotron>
                     <b:column>
-                        <h:outputLabel value="Region Name" for="name"/>
-                        <h:inputText id="name" value="#{usersBean.name}"/>
-                    </b:column>
-                    <!--b:column>
-                        <h:outputLabel value="StylistsDelivery"/>
                         <h:form>
-                            <h:commandButton value="Register" action="register"/>
-                            <h:commandButton value="Login" action="login"/>
+                            <h:outputLabel value="User Email" for="email"/>
+                            <h:inputText id="email" value="#{usersBean.email}" required="true"/>
                         </h:form>
-                    </b:column-->
+                    </b:column>
+                    <b:column>
+                        <h:form>
+                            <h:outputLabel value="User Password" for="password"/>
+                            <h:inputSecret id="password" value="#{usersBean.password}" required="true"/>
+                        </h:form>
+                    </b:column>
+
+                    <b:column>
+                        <h:form>
+                            <h:commandButton value="Save" action="welcom"/>
+                            <h:commandButton value="Cancel" action="index"/>
+                        </h:form>
+                    </b:column>
                 </b:row>
             </b:container>
         </ui:define>
