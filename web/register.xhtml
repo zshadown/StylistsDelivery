@@ -8,89 +8,68 @@
       xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            type="application/javascript"/>
 </h:head>
 
 
-<h:body>
-    <ui:composition template="defaultLayout.xhtml">
-        <ui:define name="content">
-            <b:container>
-                <b:row>
-                    <b:jumbotron>
-                        <h1>Register</h1>
-                        <!--p>Now with Bootstrap support!</p-->
-                    </b:jumbotron>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User FirstName" for="firstName"/>
-                            <h:inputText id="firstName" value="#{usersBean.firstName}" required="true"/>
-                        </h:form>
-                    </b:column>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User LastName" for="lastName"/>
-                            <h:inputText id="lastName" value="#{usersBean.lastName}" required="true"/>
-                        </h:form>
-                    </b:column>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User Birthday" for="birthday"/>
-                            <h:inputText id="birthday" value="#{usersBean.birthday}">
-                                <f:convertDateTime pattern="yyyy-mm-dd"/>
-                            </h:inputText>
-                        </h:form>
-                    </b:column>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User Email" for="email"/>
-                            <h:inputText id="email" value="#{usersBean.email}" required="true"/>
-                        </h:form>
-                    </b:column>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User DNI" for="dni"/>
-                            <h:inputText id="dni" value="#{usersBean.dni}" required="true" maxlength="8"/>
-                        </h:form>
-                    </b:column>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User Password" for="password"/>
-                            <h:inputSecret id="password" value="#{usersBean.password}" required="true"/>
-                        </h:form>
-                    </b:column>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User Type" for="userTypeId"/>
-                            <h:inputText id="userTypeId" value="#{usersBean.userType.id}" required="true"/>
-                        </h:form>
-                    </b:column>
-                    <b:column>
-                        <h:form>
-                            <h:outputLabel value="User Disctrict" for="districtId"/>
-                            <h:inputText id="districtId" value="#{usersBean.district.id}" required="true"/>
-                        </h:form>
-                    </b:column>
+    <h:body>
+        <b:container>
+            <b:row>
+                <b:jumbotron>
+                    <h1>Register</h1>
+                    <!--p>Now with Bootstrap support!</p-->
+                </b:jumbotron>
 
-                    <b:column>
-                        <h:form>
-                            <h:commandButton value="Save" action="#{usersBean.createUser}"/>
-                            <h:commandButton value="Cancel" action="index"/>
-                        </h:form>
-                    </b:column>
+                <b:column>
+                        <h:outputLabel value="User FirstName" for="firstName"/>
+                        <h:inputText id="firstName" value="#{usersBean.firstName}" required="true"/>
+                </b:column>
+                <b:column>
+                        <h:outputLabel value="User LastName" for="lastName"/>
+                        <h:inputText id="lastName" value="#{usersBean.lastName}" required="true"/>
+                </b:column>
+                <b:column>
+                        <h:outputLabel value="User Birthday" for="birthday"/>
+                        <h:inputText id="birthday" value="#{usersBean.birthday}">
+                            <f:convertDateTime pattern="yyyy-mm-dd"/>
+                        </h:inputText>
+                </b:column>
+                <b:column>
+                        <h:outputLabel value="User Email" for="email"/>
+                        <h:inputText id="email" value="#{usersBean.email}" required="true"/>
+                </b:column>
+                <b:column>
+                        <h:outputLabel value="User DNI" for="dni"/>
+                        <h:inputText id="dni" value="#{usersBean.dni}" required="true" maxlength="8"/>
+                </b:column>
+                <b:column>
+                        <h:outputLabel value="User Password" for="password"/>
+                        <h:inputSecret id="password" value="#{usersBean.password}" required="true"/>
+                </b:column>
+                <b:column>
+                        <h:outputLabel value="User Type" for="userTypeId"/>
+                        <h:inputText id="userTypeId" value="#{usersBean.userType.id}" required="true"/>
+                </b:column>
+                <b:column>
+                        <h:outputLabel value="User Disctrict" for="districtId"/>
+                        <h:inputText id="districtId" value="#{usersBean.district.id}" required="true"/>
+                </b:column>
 
 
-                    <!--b:column>
-                        <h:outputLabel value="StylistsDelivery"/>
-                        <h:form>
-                            <h:commandButton value="Register" action="register"/>
-                            <h:commandButton value="Login" action="login"/>
-                        </h:form>
-                    </b:column-->
-                </b:row>
-            </b:container>
-        </ui:define>
-    </ui:composition>
-</h:body>
+                <h:form>
+                        <h:commandButton value="Save" action="#{usersBean.createUser}"/>
+                        <h:commandButton value="Cancel" action="index"/>
+                </h:form>
+            </b:row>
+        </b:container>
+    </h:body>
 
 </html>

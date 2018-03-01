@@ -3,5 +3,35 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <navigation-rule>
+        <from-view-id>/listReservations.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{reservationsBean.newReservation}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/newReservation.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{reservationsBean.editReservation(reservation)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/editReservation.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/newReservation.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/listReservations.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/editReservation.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/listReservations.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
   
 </faces-config>
