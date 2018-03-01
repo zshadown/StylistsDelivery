@@ -31,43 +31,36 @@ public class ServicesBean implements Serializable{
         this.service = service;
     }
 
-
-
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getDescription() {
-        return description;
+        return this.getService().getDescription();
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.getService().setDescription(description);
     }
 
     public double getCost() {
-        return cost;
+        return this.getService().getCost();
     }
 
     public void setCost(double cost) {
-        this.cost = cost;
+        this.getService().setCost(cost);
     }
 
     public int getTime() {
-        return time;
+        return this.getService().getTime();
     }
 
     public void setTime(int time) {
-        this.time = time;
+        this.getService().setTime(time);
     }
 
+    public User getUser(){
+        return this.getService().getUser();
+    }
 
-
+    public void setUser(User user){
+        this.getService().setUser(user);
+    }
 
 }
