@@ -63,4 +63,29 @@ public class ServicesBean implements Serializable{
         this.getService().setUser(user);
     }
 
+    public String newService(){
+        this.setService(new Service());
+        return "success";
+    }
+
+    public String createService(){
+        sdService.createService(this.getService());
+        return "success";
+    }
+
+    public String editService(Service service){
+        this.setService(service);
+        return "success";
+    }
+
+    public String updateService(){
+        sdService.updateService(this.getService());
+        return "success";
+    }
+
+    public String deleteService(Service service){
+        sdService.deleteService(service.getId());
+        return "success";
+    }
+
 }
