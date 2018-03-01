@@ -1,33 +1,66 @@
 package pe.edu.utp.stylistsdeliveryp.beans;
 
+import pe.edu.utp.stylistsdeliveryp.models.SdService;
+import pe.edu.utp.stylistsdeliveryp.models.UserType;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 @SessionScoped
-@Named (value = "login")
+@Named
 public class UsersTypeBean implements Serializable{
-    private String id;
-    private String description;
+    private SdService sdService;
+    private UserType userType;
 
-
-    public String getId() {
-        return id;
+    public UsersTypeBean(){
+        sdService = new SdService();
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public List<UserType> getUserTypes(){
+        return sdService.findAllUserType();
     }
 
-    public String getDescription() {
-        return description;
+    public UserType getUserType(){
+        return userType;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setUserType(UserType userType){
+        this.userType = userType;
     }
-    public  String  doValidateInput(){
-        return  "succes";
+
+    public String getDescription(){
+        return this.getUserType().getDescription();
     }
+
+    public void setDescription(String description){
+        this.getUserType().setDescription(description);
+    }
+
+    public String newUserType(){
+        this.setUserType(new UserType());
+        return "success";
+    }
+
+    public String createUserType(){
+        sdService.createUserType(this.getDescription());
+        return "success";
+    }
+
+    public String editUserType(UserType userType){
+        this.setUserType(userType);
+        return "success";
+    }
+
+    public String updateUserType(){
+        sdService.updateUserType(this.getUserType());
+        return "success";
+    }
+
+    public String deleteUserType(UserType userType){
+        sdService.deleteUserType(userType.getId());
+        return "success";
+    }
+
 }

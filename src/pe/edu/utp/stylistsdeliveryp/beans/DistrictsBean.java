@@ -23,7 +23,7 @@ public class DistrictsBean implements Serializable {
     }
 
     public List<District> getDistricts(ProvincesEntity provincesEntity){
-        return sdService.findAllDistricts(provincesEntity);
+        return sdService.findAllDistricts();
     }
 
 }

@@ -47,8 +47,8 @@ public class SdService {
     protected DistrictsEntity getDistrictsEntity(){
         if(getConnection() != null) {
             if(districtsEntity == null) {
-               districtsEntity = new DistrictsEntity();
-               districtsEntity.setConnection(getConnection());
+                districtsEntity = new DistrictsEntity();
+                districtsEntity.setConnection(getConnection());
             }
         }
         return districtsEntity;
@@ -77,7 +77,7 @@ public class SdService {
     }
 
     /*Metodo Entity UsersType*/
-    protected UsersTypeEntity getUsersType(){
+    protected UsersTypeEntity getUsersTypeEntity(){
         if(getConnection() != null) {
             if(usersTypeEntity == null) {
                 usersTypeEntity = new UsersTypeEntity();
@@ -88,28 +88,90 @@ public class SdService {
     }
 
 
+
     /*Metodo update, create, delete, find de Users*/
 
+    public User findUserById(int id){
+        return getUsersEntity() != null ?
+                getUsersEntity().findById(id) : null;
+    }
+
+    public List<User> findAllUser(){
+        return getUsersEntity() != null ?
+                getUsersEntity().findAll(getUsersTypeEntity(), getDistrictsEntity()) : null;
+    }
+
+    public User findUserByEmail(String email){
+        return getUsersEntity() != null ?
+                getUsersEntity().findByEmail(email) : null;
+    }
+
+    public User createUser(User user){
+        return getUsersEntity() != null ?
+                getUsersEntity().create(user) : null;
+    }
+
+    public boolean updateUser(User user){
+        return getUsersEntity() != null ?
+                getUsersEntity().update(user) : false;
+    }
+
+    public boolean deleteUser(int id){
+        return getUsersEntity() != null ?
+                getUsersEntity().delete(id) : false;
+    }
 
 
     /*Metodo update, create, delete, find de UserType*/
 
+    public List<UserType> findAllUserType(){
+        return getUsersTypeEntity() != null ?
+                getUsersTypeEntity().findAll() : null;
+    }
+
+    public UserType findUserTypeById(int id){
+        return getUsersTypeEntity() != null ?
+                getUsersTypeEntity().findById(id) : null;
+    }
+
+    public UserType findUserTypeByName(String name){
+        return getUsersTypeEntity() != null ?
+                getUsersTypeEntity().findByName(name) : null;
+    }
+
+    public UserType createUserType(String name){
+        return getUsersTypeEntity() != null?
+                getUsersTypeEntity().create(name) : null;
+    }
+
+    public boolean deleteUserType(int id){
+        return getUsersTypeEntity() != null ?
+                getUsersTypeEntity().delete(id) : false;
+    }
+
+    public boolean updateUserType(UserType userType){
+        return getUsersTypeEntity() != null ?
+                getUsersTypeEntity().update(userType) : false;
+    }
+
+
     /*Metodo update, create, delete, find de Provinces*/
+
     public List<Province> findAllProvinces() {
         return getProvincesEntity() != null?
                 getProvincesEntity().findAll() : null;
     }
     /*Metodo update, create, delete, find de Districts*/
-    public  List<District> findAllDistricts(ProvincesEntity provincesEntity){
+    public  List<District> findAllDistricts(){
         return  getDistrictsEntity() != null ?
-                getDistrictsEntity().findAll(provincesEntity) : null;
+                getDistrictsEntity().findAll(getProvincesEntity()) : null;
     }
 
 
 
     /*Metodo update, create, delete, find de Services*/
 
-        
+
 
 
 

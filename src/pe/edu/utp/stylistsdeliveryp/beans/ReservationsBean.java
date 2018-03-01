@@ -13,7 +13,7 @@ import java.util.Date;
 public class ReservationsBean implements Serializable{
     private int id;
     private Date date;
-    private  String address;
+    private String address;
     private Service service;
     private User userst;
     private User userCli;

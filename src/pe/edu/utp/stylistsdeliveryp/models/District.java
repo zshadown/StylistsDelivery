@@ -8,6 +8,11 @@ public class District {
     public District() {
     }
 
+    public District(int id, String description){
+        this.setId(id);
+        this.setDescription(description);
+    }
+
     public District(int id, String description, Province province) {
         this.setId(id);
         this.setDescription(description);

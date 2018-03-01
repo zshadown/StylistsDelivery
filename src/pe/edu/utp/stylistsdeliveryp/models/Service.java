@@ -17,7 +17,6 @@ public class Service {
         this.setUser(user);
     }
 
-
     public int getId() {
         return id;
     }

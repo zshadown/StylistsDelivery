@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsersEntity extends BaseEntity {
+
+    private UsersTypeEntity usersTypeEntity;
+    private DistrictsEntity districtsEntity;
     private static String DEFAULT_SQL = "SELECT * FROM users";
+
     private List<User> findByCriteria(String sql, UsersTypeEntity usersTypeEntity, DistrictsEntity districtsEntity){
         List<User> users = new ArrayList<>();
         if (getConnection() != null){
@@ -14,8 +18,8 @@ public class UsersEntity extends BaseEntity {
                 ResultSet resultSet = getConnection()
                         .createStatement()
                         .executeQuery(sql);
-                while (resultSet.next()){/*
-                    User user = new User((
+                while (resultSet.next()){
+                    User user = new User(
                             resultSet.getInt("id"),
                             resultSet.getString("first_name"),
                             resultSet.getString("last_name"),
@@ -23,10 +27,10 @@ public class UsersEntity extends BaseEntity {
                             resultSet.getString("email"),
                             resultSet.getInt("dni"),
                             resultSet.getString("password"),
-                            usersTypeEntity.findById(resultSet.getInt("id")),
-                            DistrictsEntity.findById(resultSet.getInt("id"))
+                            usersTypeEntity.findById(resultSet.getInt("user_type_id")),
+                            districtsEntity.findById(resultSet.getInt("districts_id"))
                     );
-                    users.add(user);*/
+                    users.add(user);
                 }
             } catch (SQLException e){
                 e.printStackTrace();
@@ -44,17 +48,18 @@ public class UsersEntity extends BaseEntity {
                         .createStatement()
                         .executeQuery(sql);
                 while (resultSet.next()){
-                    User user = new User()
-                    .setId(resultSet.getInt("id"))
-                            .setFirstName(resultSet.getString("first_name"))
-                            .setLastName(resultSet.getString("last_name"))
-                            .setBirthday(resultSet.getDate("birthday"))
-                            .setEmail(resultSet.getString("email"))
-                            .setDni(resultSet.getInt("dni"))
-                            .setPassword(resultSet.getString("password"));/*
-                            .setUserType(resultSet.getInt("user_type_id"))
-                            .setDistrict(resultSet.)*/
-                            users.add(user);
+                    User user = new User(
+                            resultSet.getInt("id"),
+                            resultSet.getString("first_name"),
+                            resultSet.getString("last_name"),
+                            resultSet.getDate("birthday"),
+                            resultSet.getString("email"),
+                            resultSet.getInt("dni"),
+                            resultSet.getString("password"),
+                            usersTypeEntity.findById(resultSet.getInt("user_type_id")),
+                            districtsEntity.findById(resultSet.getInt("districts_id")));
+
+                    users.add(user);
                 }
                 return users;
             } catch (SQLException e){
@@ -70,13 +75,13 @@ public class UsersEntity extends BaseEntity {
 
     public User findById(int id){
         List<User> users = findByCriteria(DEFAULT_SQL +
-        " WHERE id = "+ String.valueOf(id), null, null);
+                " WHERE id = "+ String.valueOf(id), null, null);
         return (users != null ? users.get(0) : null);
     }
 
     public User findByEmail(String email){
         List<User> users = findByCriteriaVar(DEFAULT_SQL +
-        " WHERE email = '" + email + "'");
+                " WHERE email = '" + email + "'");
         return (users != null ? users.get(0) : null);
     }
 
@@ -150,4 +155,5 @@ public class UsersEntity extends BaseEntity {
     public boolean delete(int id){
         return updateByCriteria("DELETE FROM users WHERE id = "+String.valueOf(id)) > 0;
     }
+
 }
