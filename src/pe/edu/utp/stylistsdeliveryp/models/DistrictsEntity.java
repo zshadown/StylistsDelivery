@@ -63,4 +63,69 @@ public class DistrictsEntity extends BaseEntity {
         return (districts!= null && !districts.isEmpty() ? districts.get(0) : null);
     }
 
+    public District findByDescription(String description) {
+        List<District> districts = findByCriteria(DEFAULT_SQL +
+                " WHERE description = '" + description + "'");
+        return (districts != null && !districts.isEmpty() ? districts.get(0) : null);
+    }
+
+    private int updateByCriteria(String sql) {
+        if(getConnection() != null) {
+            try {
+                return getConnection()
+                        .createStatement()
+                        .executeUpdate(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
+
+    public boolean delete(int id) {
+        return updateByCriteria("DELETE FROM districts WHERE id = " + String.valueOf(id)) > 0;
+    }
+
+    private int getMaxId() {
+        String sql = "SELECT MAX(id) AS max_id FROM districts";
+        if(getConnection() != null) {
+            try {
+                ResultSet resultSet = getConnection()
+                        .createStatement()
+                        .executeQuery(sql);
+                return resultSet.next() ?
+                        resultSet.getInt("max_id") : 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return 0;
+    }
+
+    public District create(String description) {
+        if(findByDescription(description) == null) {
+            if(getConnection() != null) {
+                String sql = "INSERT INTO districts(id, description) VALUES(" +
+                        String.valueOf(getMaxId() + 1) + ", '" +
+                        description + "')";
+                int results = updateByCriteria(sql);
+                if(results > 0) {
+                    District district = new District(getMaxId(), description);
+                    return district;
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean update(District district) {
+        if(findByDescription(district.getDescription()) != null) return false;
+        return updateByCriteria(
+                "UPDATE districts SET description = '" +
+                        district.getDescription() + "'" +
+                        " WHERE id = " +
+                        String.valueOf(district.getId())) > 0;
+    }
+
 }

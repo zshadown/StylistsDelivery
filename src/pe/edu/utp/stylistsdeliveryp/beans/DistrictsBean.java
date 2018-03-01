@@ -26,4 +26,50 @@ public class DistrictsBean implements Serializable {
         return sdService.findAllDistricts();
     }
 
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    public String getDescription() {
+        return this.getDistrict().getDescription ();
+    }
+
+    public void setDescription(String description) {
+
+        this.getDistrict().setDescription(description);
+    }
+
+    public String newDistric() {
+        this.setDistrict(new District());
+        return "success";
+    }
+
+    public String createDistrict() {
+        sdService.createDistrict(this.getDescription());
+        return "success";
+    }
+
+    public String editDistrict(District district) {
+        this.setDistrict(district);
+        return "success";
+    }
+
+    public String updateDistrict() {
+        sdService.updateDistrict(this.getDistrict());
+        return "success";
+    }
+
+    public String deleteDistric(District district) {
+        sdService.deleteDistrict(district.getId());
+        return "success";
+    }
+
 }
+
+
+
+

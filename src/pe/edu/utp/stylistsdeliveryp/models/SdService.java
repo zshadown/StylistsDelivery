@@ -96,7 +96,7 @@ public class SdService {
                 getUsersEntity().findById(id) : null;
     }
 
-    public List<User> findAllUser(){
+    public List<User> findAllUsers(){
         return getUsersEntity() != null ?
                 getUsersEntity().findAll(getUsersTypeEntity(), getDistrictsEntity()) : null;
     }
@@ -124,7 +124,7 @@ public class SdService {
 
     /*Metodo update, create, delete, find de UserType*/
 
-    public List<UserType> findAllUserType(){
+    public List<UserType> findAllUsersType(){
         return getUsersTypeEntity() != null ?
                 getUsersTypeEntity().findAll() : null;
     }
@@ -161,10 +161,60 @@ public class SdService {
         return getProvincesEntity() != null?
                 getProvincesEntity().findAll() : null;
     }
+
+    public Province findProvinceById(int id){
+        return getProvincesEntity() != null ?
+                getProvincesEntity().findById(id) : null;
+    }
+
+    public Province findProvinceByDescription(String description){
+        return getProvincesEntity() != null ?
+                getProvincesEntity().findByDescription(description) : null;
+    }
+
+    public Province createProvince(String description){
+        return getProvincesEntity() != null?
+                getProvincesEntity().create(description) : null;
+    }
+
+    public boolean deleteProvince(int id){
+        return getProvincesEntity() != null ?
+                getProvincesEntity().delete(id) : false;
+    }
+
+    public boolean updateProvince(Province province){
+        return getProvincesEntity() != null ?
+                getProvincesEntity().update(province) : false;
+    }
     /*Metodo update, create, delete, find de Districts*/
     public  List<District> findAllDistricts(){
         return  getDistrictsEntity() != null ?
                 getDistrictsEntity().findAll(getProvincesEntity()) : null;
+    }
+
+    public District findDistricById(int id){
+        return getDistrictsEntity() != null ?
+                getDistrictsEntity().findById(id) : null;
+    }
+
+    public District findDistricByDescription(String description){
+        return getDistrictsEntity() != null ?
+                getDistrictsEntity().findByDescription(description) : null;
+    }
+
+    public District createDistrict(String description){
+        return getDistrictsEntity() != null?
+                getDistrictsEntity().create(description) : null;
+    }
+
+    public boolean deleteDistrict(int id){
+        return getDistrictsEntity() != null ?
+                getDistrictsEntity().delete(id) : false;
+    }
+
+    public boolean updateDistrict(District district){
+        return getDistrictsEntity() != null ?
+                getDistrictsEntity().update(district) : false;
     }
 
 
