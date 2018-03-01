@@ -22,7 +22,7 @@ public class UsersBean implements Serializable{
     }
 
     public List<User> getUsers(){
-        return sdService.findAllUser();
+        return sdService.findAllUsers();
     }
 
     public User getUser() {

@@ -19,7 +19,7 @@ public class UsersTypeBean implements Serializable{
     }
 
     public List<UserType> getUserTypes(){
-        return sdService.findAllUserType();
+        return sdService.findAllUsersType();
     }
 
     public UserType getUserType(){

@@ -69,7 +69,7 @@ public class UsersEntity extends BaseEntity {
         return null;
     }
 
-    public List<User> findAll(UsersTypeEntity usersTypeEntity, DistrictsEntity districtsEntity){
+    public List<User> findAllUser(UsersTypeEntity usersTypeEntity, DistrictsEntity districtsEntity){
         return findByCriteria(DEFAULT_SQL, usersTypeEntity, districtsEntity);
     }
 

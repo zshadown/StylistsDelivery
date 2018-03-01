@@ -98,7 +98,7 @@ public class SdService {
 
     public List<User> findAllUsers(){
         return getUsersEntity() != null ?
-                getUsersEntity().findAll(getUsersTypeEntity(), getDistrictsEntity()) : null;
+                getUsersEntity().findAllUser(getUsersTypeEntity(), getDistrictsEntity()) : null;
     }
 
     public User findUserByEmail(String email){
