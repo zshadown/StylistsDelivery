@@ -1,2 +1,0 @@
-# StylistsDelivery
-Proyecto Nuevo
