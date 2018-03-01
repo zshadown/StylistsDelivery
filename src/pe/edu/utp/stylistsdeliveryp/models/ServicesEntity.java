@@ -77,7 +77,7 @@ public class ServicesEntity extends BaseEntity {
         return 0;
     }
 
-    private Service create(Service service){
+    public Service create(Service service){
         if (getConnection()!=null){
             String sql = "INSERT INTO services(id, description," +
                     "cost, time, users_id, users_user_type_id," +
@@ -85,9 +85,32 @@ public class ServicesEntity extends BaseEntity {
                     String.valueOf(getMaxId()+1) + ", '" + service.getDescription()+"', " +
                     String.valueOf(service.getCost()) + ", " + service.getTime() +", " +
                     String.valueOf(service.getUser().getId()) + ", " + service.getUser().getUserType().getId() + ", " +
-                    String.valueOf(service.getUser().getDistrict().getId());
+                    String.valueOf(service.getUser().getDistrict().getId()) +")";
+            int results = updateByCriteria(sql);
+            if (results>0){
+                service = new Service(getMaxId(),service.getDescription(),
+                        service.getCost(), service.getTime(), service.getUser());
+                return service;
+            }
         }
         return null;
     }
 
+    public boolean update(Service service){
+        if (findById(service.getId())!=null) return false;
+        return updateByCriteria(
+                "UPDATE services SET " +
+                        "id = " + String.valueOf(service.getId()) + ", " +
+                        "description = '" + service.getDescription() + "', " +
+                        "cost = " + String.valueOf(service.getCost()) + ", " +
+                        "time = " + String.valueOf(service.getTime()) + ", " +
+                        "users_id = " + String.valueOf(service.getUser().getId()) + ", " +
+                        "users_user_type = " + String.valueOf(service.getUser().getUserType().getId()) + ", " +
+                        "users_districts_id = " + String.valueOf(service.getUser().getDistrict().getId()) +
+                        " WHERE id = " + String.valueOf(service.getId()))>0;
+    }
+
+    public boolean delete(int id){
+        return updateByCriteria("DELETE FROM services WHERE id = "+ String.valueOf(id))>0;
+    }
 }
