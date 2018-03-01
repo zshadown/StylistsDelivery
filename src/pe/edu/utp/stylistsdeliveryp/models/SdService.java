@@ -186,6 +186,7 @@ public class SdService {
         return getProvincesEntity() != null ?
                 getProvincesEntity().update(province) : false;
     }
+
     /*Metodo update, create, delete, find de Districts*/
     public  List<District> findAllDistricts(){
         return  getDistrictsEntity() != null ?
