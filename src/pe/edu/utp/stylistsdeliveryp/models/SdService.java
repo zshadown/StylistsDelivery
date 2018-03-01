@@ -217,7 +217,7 @@ public class SdService {
                 getDistrictsEntity().update(district) : false;
     }
 
-
+////////////////////////////////////////
 
     /*Metodo update, create, delete, find de Services*/
     public Service findServiceById(int id){
