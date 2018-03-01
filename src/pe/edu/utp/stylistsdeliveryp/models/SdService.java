@@ -170,11 +170,33 @@ public class SdService {
 
 
     /*Metodo update, create, delete, find de Services*/
+    public Service findServiceById(int id){
+        return getServicesEntity() != null ?
+                getServicesEntity().findById(id) : null;
+    }
 
+    public List<Service> findAllService(){
+        return getServicesEntity() != null ?
+                getServicesEntity().findAll(getUsersEntity()) :null;
+    }
 
+    public Service findServiceByCost(Double cost){
+        return getServicesEntity() != null ?
+                getServicesEntity().findByCost(cost) : null;
+    }
 
+    public Service createService(Service service){
+        return getServicesEntity() != null ?
+                getServicesEntity().create(service) : null;
+    }
 
+    public boolean updateService(Service service){
+        return getServicesEntity() != null ?
+                getServicesEntity().update(service) : false;
+    }
 
-
-
+    public boolean deleteService(int id){
+        return getServicesEntity()!= null?
+                getServicesEntity().delete(id) : false;
+    }
 }
