@@ -48,11 +48,11 @@ public class ServicesBean implements Serializable{
     }
 
     public int getTime() {
-        return this.getService().getTime();
+        return this.getService().getDuration();
     }
 
-    public void setTime(int time) {
-        this.getService().setTime(time);
+    public void setDuration(int time) {
+        this.getService().setDuration(time);
     }
 
     public User getUser(){

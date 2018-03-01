@@ -20,7 +20,7 @@ public class ServicesEntity extends BaseEntity {
                             resultSet.getInt("id"),
                             resultSet.getString("description"),
                             resultSet.getDouble("cost"),
-                            resultSet.getInt("time"),
+                            resultSet.getInt("duration"),
                             usersEntity.findById(resultSet.getInt("users_id"))
                     );
                     services.add(service);
@@ -80,16 +80,14 @@ public class ServicesEntity extends BaseEntity {
     public Service create(Service service){
         if (getConnection()!=null){
             String sql = "INSERT INTO services(id, description," +
-                    "cost, time, users_id, users_user_type_id," +
-                    "users_districts_id) VALUES(" +
+                    "cost, duration, users_id) VALUES(" +
                     String.valueOf(getMaxId()+1) + ", '" + service.getDescription()+"', " +
-                    String.valueOf(service.getCost()) + ", " + service.getTime() +", " +
-                    String.valueOf(service.getUser().getId()) + ", " + service.getUser().getUserType().getId() + ", " +
-                    String.valueOf(service.getUser().getDistrict().getId()) +")";
+                    String.valueOf(service.getCost()) + ", " + service.getDuration() +", " +
+                    String.valueOf(service.getUser().getId()) + ")";
             int results = updateByCriteria(sql);
             if (results>0){
                 service = new Service(getMaxId(),service.getDescription(),
-                        service.getCost(), service.getTime(), service.getUser());
+                        service.getCost(), service.getDuration(), service.getUser());
                 return service;
             }
         }
@@ -103,10 +101,8 @@ public class ServicesEntity extends BaseEntity {
                         "id = " + String.valueOf(service.getId()) + ", " +
                         "description = '" + service.getDescription() + "', " +
                         "cost = " + String.valueOf(service.getCost()) + ", " +
-                        "time = " + String.valueOf(service.getTime()) + ", " +
-                        "users_id = " + String.valueOf(service.getUser().getId()) + ", " +
-                        "users_user_type = " + String.valueOf(service.getUser().getUserType().getId()) + ", " +
-                        "users_districts_id = " + String.valueOf(service.getUser().getDistrict().getId()) +
+                        "duration = " + String.valueOf(service.getDuration()) + ", " +
+                        "users_id = " + String.valueOf(service.getUser().getId()) +
                         " WHERE id = " + String.valueOf(service.getId()))>0;
     }
 

@@ -34,12 +34,12 @@ public class ReservationsBean implements Serializable{
         this.reservation = reservation;
     }
 
-    public String getDay(){
-        return this.getReservation().getDay();
+    public Date getDayPrincipal(){
+        return this.getReservation().getDayPrincipal();
     }
 
-    public void setDay(String day){
-        this.getReservation().setDay(day);
+    public void setDayPrincipal(Date dayPrincipal){
+        this.getReservation().setDayPrincipal(dayPrincipal);
     }
 
     public String getAddress() {
@@ -50,20 +50,20 @@ public class ReservationsBean implements Serializable{
         this.getReservation().setAddress(address);
     }
 
-    public String getTime(){
-        return this.getReservation().getTime();
+    public Date getHourPrincipal(){
+        return this.getReservation().getHourPrincipal();
     }
 
-    public void setTime(String time){
-        this.getReservation().setTime(time);
+    public void setHourPrincipal(Date hourPrincipal){
+        this.getReservation().setHourPrincipal(hourPrincipal);
     }
 
-    public String getState(){
-        return this.getReservation().getState();
+    public int getStatus(){
+        return this.getReservation().getStatus();
     }
 
-    public void setState(String state){
-        this.getReservation().setState(state);
+    public void setStatus(int status){
+        this.getReservation().setStatus(status);
     }
 
     public Service getService(){
@@ -74,12 +74,20 @@ public class ReservationsBean implements Serializable{
         this.getReservation().setService(service);
     }
 
-    public User getUser(){
-        return this.getReservation().getUser();
+    public User getUserCli(){
+        return this.getReservation().getUserCli();
     }
 
-    public void setUser(User user){
-        this.getReservation().setUser(user);
+    public void setUserCli(User userCli){
+        this.getReservation().setUserCli(userCli);
+    }
+
+    public User getUserSty(){
+        return this.getReservation().getUserSty();
+    }
+
+    public void setUserSty(User userSty){
+        this.getReservation().setUserSty(userSty);
     }
 
     public String newReservation(){
@@ -106,6 +114,5 @@ public class ReservationsBean implements Serializable{
         sdService.deleteReservation(reservation.getId());
         return "success";
     }
-
 
 }

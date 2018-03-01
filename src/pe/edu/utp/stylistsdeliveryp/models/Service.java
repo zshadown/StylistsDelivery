@@ -4,16 +4,16 @@ public class Service {
     private int id;
     private String description;
     private double cost;
-    private int time;
+    private int duration;
     private User user;
     public Service() {
     }
 
-    public Service(int id, String description, double cost, int time, User user) {
+    public Service(int id, String description, double cost, int duration, User user) {
         this.setId(id);
         this.setDescription(description);
         this.setCost(cost);
-        this.setTime(time);
+        this.setDuration(duration);
         this.setUser(user);
     }
 
@@ -44,12 +44,12 @@ public class Service {
         return this;
     }
 
-    public int getTime() {
-        return time;
+    public int getDuration() {
+        return duration;
     }
 
-    public Service setTime(int time) {
-        this.time = time;
+    public Service setDuration(int duration) {
+        this.duration = duration;
         return this;
     }
 

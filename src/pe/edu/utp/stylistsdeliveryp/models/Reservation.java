@@ -1,26 +1,30 @@
 package pe.edu.utp.stylistsdeliveryp.models;
 
+import java.util.Date;
+
 public class Reservation {
 
     private int id;
-    private String day;
+    private Date dayPrincipal;
     private String address;
-    private String time;
-    private String state;
+    private Date hourPrincipal;
+    private int status;
     private Service service;
-    private User user;
+    private User userCli;
+    private User userSty;
 
     public Reservation() {
     }
 
-    public Reservation(int id, String day, String address, String time, String state, Service service, User user) {
-        this.setId(id);
-        this.setDay(day);
-        this.setAddress(address);
-        this.setTime(time);
-        this.setState(state);
-        this.setService(service);
-        this.setUser(user);
+    public Reservation(int id, Date dayPrincipal, String address, Date hourPrincipal, int status, Service service, User userCli, User userSty) {
+        this.id = id;
+        this.setDayPrincipal(dayPrincipal);
+        this.address = address;
+        this.setHourPrincipal(hourPrincipal);
+        this.setStatus(status);
+        this.service = service;
+        this.setUserCli(userCli);
+        this.setUserSty(userSty);
     }
 
     public int getId() {
@@ -29,15 +33,6 @@ public class Reservation {
 
     public Reservation setId(int id) {
         this.id = id;
-        return this;
-    }
-
-    public String getDay() {
-        return day;
-    }
-
-    public Reservation setDay(String day) {
-        this.day = day;
         return this;
     }
 
@@ -50,24 +45,6 @@ public class Reservation {
         return this;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public Reservation setTime(String time) {
-        this.time = time;
-        return this;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public Reservation setState(String state) {
-        this.state = state;
-        return this;
-    }
-
     public Service getService() {
         return service;
     }
@@ -77,12 +54,48 @@ public class Reservation {
         return this;
     }
 
-    public User getUser() {
-        return user;
+    public Date getDayPrincipal() {
+        return dayPrincipal;
     }
 
-    public Reservation setUser(User user) {
-        this.user = user;
+    public Reservation setDayPrincipal(Date dayPrincipal) {
+        this.dayPrincipal = dayPrincipal;
+        return this;
+    }
+
+    public Date getHourPrincipal() {
+        return hourPrincipal;
+    }
+
+    public Reservation setHourPrincipal(Date hourPrincipal) {
+        this.hourPrincipal = hourPrincipal;
+        return this;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public Reservation setStatus(int status) {
+        this.status = status;
+        return this;
+    }
+
+    public User getUserCli() {
+        return userCli;
+    }
+
+    public Reservation setUserCli(User userCli) {
+        this.userCli = userCli;
+        return this;
+    }
+
+    public User getUserSty() {
+        return userSty;
+    }
+
+    public Reservation setUserSty(User userSty) {
+        this.userSty = userSty;
         return this;
     }
 }

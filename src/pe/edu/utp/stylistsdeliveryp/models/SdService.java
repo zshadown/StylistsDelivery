@@ -274,7 +274,7 @@ public class SdService {
 
     public List<Reservation> findAllReservation(){
         return getReservationsEntity() != null ?
-                getReservationsEntity().findAll(getUsersEntity(),getServicesEntity()) : null;
+                getReservationsEntity().findAll(getServicesEntity(), getUsersEntity(), getUsersEntity()) : null;
     }
 
     public Reservation findReservationByDay(String day){
